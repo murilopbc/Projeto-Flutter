@@ -15,11 +15,12 @@ class MyApp extends StatelessWidget {
         backgroundColor: Color.fromARGB(255, 132, 132, 136),
         
       ),
-            body: Column(
+            body: Center(child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [Text('Construindo App da Turma', style: TextStyle(fontSize: 24),),SizedBox(height: 20),ElevatedButton(onPressed: () {}, style: ElevatedButton.styleFrom(minimumSize: Size(200, 50),),child: Text('Clique aqui'),)],
-                          ),      
+              ), ),     
       ),
+
     );
   }
 }
