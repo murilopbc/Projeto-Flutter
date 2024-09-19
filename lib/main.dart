@@ -10,6 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(appBar:AppBar(
         title: const Text("Teste",style: TextStyle(color: Color.fromARGB(255, 82, 223, 0)),),
         backgroundColor: const Color.fromARGB(255, 132, 132, 136),
