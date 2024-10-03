@@ -21,11 +21,11 @@ class Projeto01AppState extends State<Projeto01App> {
   String observacao = '';
   final TextEditingController _controller = TextEditingController();
   final TextEditingController _tipoController = TextEditingController();
-  final TextEditingController _MacController = TextEditingController();
-  final TextEditingController _LatController = TextEditingController();
-  final TextEditingController _LongController = TextEditingController();
-  final TextEditingController _RespController = TextEditingController();
-  final TextEditingController _ObsController = TextEditingController();
+  final TextEditingController _macController = TextEditingController();
+  final TextEditingController _latController = TextEditingController();
+  final TextEditingController _longController = TextEditingController();
+  final TextEditingController _respController = TextEditingController();
+  final TextEditingController _obsController = TextEditingController();
   
   @override
   void dispose() {
@@ -34,7 +34,7 @@ class Projeto01AppState extends State<Projeto01App> {
 
     super.dispose();
   }
-
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -90,7 +90,7 @@ class Projeto01AppState extends State<Projeto01App> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: TextField(
-                  controller: _MacController,
+                  controller: _macController,
                   decoration: InputDecoration(
                     labelText: "Mac Adress",
                     border: OutlineInputBorder(),
@@ -104,7 +104,7 @@ class Projeto01AppState extends State<Projeto01App> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: TextField(
-                  controller: _LatController,
+                  controller: _latController,
                   decoration: InputDecoration(
                     labelText: "Latitude",
                     border: OutlineInputBorder(),
@@ -118,7 +118,7 @@ class Projeto01AppState extends State<Projeto01App> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: TextField(
-                  controller: _LongController,
+                  controller: _longController,
                   decoration: InputDecoration(
                     labelText: "Longitude",
                     border: OutlineInputBorder(),
@@ -132,7 +132,7 @@ class Projeto01AppState extends State<Projeto01App> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: TextField(
-                  controller: _RespController,
+                  controller: _respController,
                   decoration: InputDecoration(
                     labelText: "Responsável",
                     border: OutlineInputBorder(),
@@ -146,7 +146,7 @@ class Projeto01AppState extends State<Projeto01App> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: TextField(
-                  controller: _ObsController,
+                  controller: _obsController,
                   decoration: InputDecoration(
                     labelText: "observação",
                     border: OutlineInputBorder(),
