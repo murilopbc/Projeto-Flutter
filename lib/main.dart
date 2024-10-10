@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'screen2.dart';
 void main() {
   runApp(const Projeto01App());
 }
@@ -12,8 +12,8 @@ class Projeto01App extends StatefulWidget {
 
 class Projeto01AppState extends State<Projeto01App> {
   String texto = "Contruindo o App da Turma 1";
-  String localSensor = ""; //Armazena o texto do sensor
-  String tipo = ''; //Armazena o texto do sensor
+  String localSensor = "";
+  String tipo = ''; 
   String macAdress = '';
   String latitude = '';
   String longitude = '';
@@ -46,6 +46,36 @@ class Projeto01AppState extends State<Projeto01App> {
           ),
           backgroundColor: Color.fromARGB(255, 27, 1, 61),
         ),
+        drawer: Drawer(child:ListView(padding: EdgeInsets.zero,
+        children: <Widget>[
+          DrawerHeader(decoration: BoxDecoration(color: Colors.blue,
+          ),
+          child: Text('Menu',
+          style: TextStyle(color: Colors.white,
+          fontSize: 24,
+          ),
+          ),
+          ),
+          ListTile(
+            leading: Icon(Icons.home),
+            title: Text('Tela Principal'),
+            onTap: (){
+              Navigator.pop(context);
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.home),
+            title: Text('Segunda Tela'),
+            onTap: (){
+              Navigator.pop(context);
+              Navigator.push(context, MaterialPageRoute(builder:(context) => SecondScreen()),
+              );
+            },
+          ),
+
+        ],
+        ) ,
+        ),
         body: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -57,7 +87,6 @@ class Projeto01AppState extends State<Projeto01App> {
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: 20),
-              //Aqui vamos inserir a caixa de texto de input de Local do Sensor
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: TextField(
@@ -66,9 +95,9 @@ class Projeto01AppState extends State<Projeto01App> {
                     labelText: "Local do Sensor",
                     border: OutlineInputBorder(),
                   ),
-                  maxLength: 20, //limite de caracteres para digitação
+                  maxLength: 20, 
                   onChanged: (value) {
-                    localSensor = value; //Atualiza a variavel ao digitar
+                    localSensor = value; 
                   },
                 ),
               ),
@@ -81,9 +110,9 @@ class Projeto01AppState extends State<Projeto01App> {
                     labelText: "Tipo do Sensor",
                     border: OutlineInputBorder(),
                   ),
-                  maxLength: 20, //limite de caracteres para digitação
+                  maxLength: 20,
                   onChanged: (value) {
-                    tipo = value; //Atualiza a variavel ao digitar
+                    tipo = value; 
                   },
                 ),
               ),
@@ -95,9 +124,9 @@ class Projeto01AppState extends State<Projeto01App> {
                     labelText: "Mac Adress",
                     border: OutlineInputBorder(),
                   ),
-                  maxLength: 14, //limite de caracteres para digitação
+                  maxLength: 14,
                   onChanged: (value) {
-                    tipo = value; //Atualiza a variavel ao digitar
+                    tipo = value;
                   },
                 ),
               ),
@@ -109,9 +138,9 @@ class Projeto01AppState extends State<Projeto01App> {
                     labelText: "Latitude",
                     border: OutlineInputBorder(),
                   ),
-                  maxLength: 20, //limite de caracteres para digitação
+                  maxLength: 20, 
                   onChanged: (value) {
-                    tipo = value; //Atualiza a variavel ao digitar
+                    tipo = value;
                   },
                 ),
               ),
@@ -123,9 +152,9 @@ class Projeto01AppState extends State<Projeto01App> {
                     labelText: "Longitude",
                     border: OutlineInputBorder(),
                   ),
-                  maxLength: 20, //limite de caracteres para digitação
+                  maxLength: 20,
                   onChanged: (value) {
-                    tipo = value; //Atualiza a variavel ao digitar
+                    tipo = value;
                   },
                 ),
               ),
@@ -137,9 +166,9 @@ class Projeto01AppState extends State<Projeto01App> {
                     labelText: "Responsável",
                     border: OutlineInputBorder(),
                   ),
-                  maxLength: 20, //limite de caracteres para digitação
+                  maxLength: 20,
                   onChanged: (value) {
-                    tipo = value; //Atualiza a variavel ao digitar
+                    tipo = value; 
                   },
                 ),
               ),
@@ -151,9 +180,9 @@ class Projeto01AppState extends State<Projeto01App> {
                     labelText: "observação",
                     border: OutlineInputBorder(),
                   ),
-                  maxLength: 100, //limite de caracteres para digitação
+                  maxLength: 100,
                   onChanged: (value) {
-                    tipo = value; //Atualiza a variavel ao digitar
+                    tipo = value; 
                   },
                 ),
               ),
@@ -163,7 +192,7 @@ class Projeto01AppState extends State<Projeto01App> {
                   setState(() {
                     texto = localSensor.isNotEmpty
                         ? 'Local do sensor: $localSensor\nTipo: $tipo'
-                        : 'Por favor, insira um local do sensor'; //Atualiza o texto no botão
+                        : 'Por favor, insira um local do sensor'; 
                   });
                 },
                 style: ElevatedButton.styleFrom(
