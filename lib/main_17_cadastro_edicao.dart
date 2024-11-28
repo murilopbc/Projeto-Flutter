@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'main_16_segunda_tela.dart'; // Importe a Segunda_Tela_App
-import 'database_helper.dart'; // Importe o DatabaseHelper
+import 'package:myproject1/main_18_Principal.dart';
+import 'database_helper.dart'; 
 import 'sensor_model.dart';
 
 void main() {
-  runApp(Projeto01App());
+  runApp(MyApp());
 }
 
-class Projeto01App extends StatelessWidget {
-  const Projeto01App({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -16,21 +16,21 @@ class Projeto01App extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Projeto01AppScreen(), // Inicializa a tela principal
+      home: MyAppScreen(), // Inicializa a tela principal
     );
   }
 }
 
-class Projeto01AppScreen extends StatefulWidget {
+class MyAppScreen extends StatefulWidget {
   final Map<String, dynamic>? sensor; // Parâmetro opcional para edição
 
-  const Projeto01AppScreen({Key? key, this.sensor}) : super(key: key);
+  const MyAppScreen({Key? key, this.sensor}) : super(key: key);
 
   @override
   MyAppState createState() => MyAppState();
 }
 
-class MyAppState extends State<Projeto01AppScreen> {
+class MyAppState extends State<MyAppScreen> {
   String tipo = '';
   String macAddress = '';
   double? latitude;
@@ -47,10 +47,12 @@ class MyAppState extends State<Projeto01AppScreen> {
   final TextEditingController _longitudeController = TextEditingController();
   final TextEditingController _localizacaoController = TextEditingController();
   final TextEditingController _responsavelController = TextEditingController();
-  final TextEditingController _unidadeMedidaController = TextEditingController();
+  final TextEditingController _unidadeMedidaController =
+      TextEditingController();
   final TextEditingController _observacaoController = TextEditingController();
 
-  final DatabaseHelper _dbHelper = DatabaseHelper(); // Instância do helper do banco de dados
+  final DatabaseHelper _dbHelper =
+      DatabaseHelper(); // Instância do helper do banco de dados
 
   @override
   void initState() {
@@ -93,13 +95,15 @@ class MyAppState extends State<Projeto01AppScreen> {
       localizacao: _localizacaoController.text,
       responsavel: _responsavelController.text,
       unidade_medida: _unidadeMedidaController.text,
-      status_operacional: statusOperacional ? 1 : 0, // Corrigido para valor binário
+      status_operacional:
+          statusOperacional ? 1 : 0, // Corrigido para valor binário
       observacao: _observacaoController.text,
     );
 
     if (widget.sensor == null) {
       // Se não estiver editando, insira um novo sensor
-      await _dbHelper.insertSensor(sensor.toMap()); // Assumindo que insertSensor aceita Map
+      await _dbHelper.insertSensor(
+          sensor.toMap()); // Assumindo que insertSensor aceita Map
     } else {
       // Se estiver editando, atualize o sensor existente
       await _dbHelper.updateSensor(sensor);
@@ -114,7 +118,9 @@ class MyAppState extends State<Projeto01AppScreen> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text('Cadastro de Sensor'),
-          content: Text(widget.sensor == null ? 'Sensor Cadastrado com Sucesso!!!' : 'Sensor Atualizado com Sucesso!!!'),
+          content: Text(widget.sensor == null
+              ? 'Sensor Cadastrado com Sucesso!!!'
+              : 'Sensor Atualizado com Sucesso!!!'),
           actions: <Widget>[
             TextButton(
               child: Text('OK'),
@@ -123,7 +129,9 @@ class MyAppState extends State<Projeto01AppScreen> {
                 _limparCampos(); // Limpa os campos após fechar o diálogo
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => Projeto01AppScreen()), // Chama a tela principal novamente
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          MyAppScreen()), // Chama a tela principal novamente
                 );
               },
             ),
@@ -162,13 +170,24 @@ class MyAppState extends State<Projeto01AppScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Cadastro de Sensor'),
-        backgroundColor: Colors.grey[300],
-        leading: Builder(
-          builder: (context) => IconButton(
-            icon: Icon(Icons.menu),
-            onPressed: () => Scaffold.of(context).openDrawer(),
-          ),
+        title: Row(
+          children: [
+            Image.asset(
+              'assets/senai_logo.png',
+              height: 40,
+              errorBuilder: (context, error, stackTrace) {
+                return Icon(Icons.error, color: Colors.red);
+              },
+            ),
+            SizedBox(width: 10),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Projeto Smart City', style: TextStyle(fontSize: 16)),
+                Text('Roberto Mange', style: TextStyle(fontSize: 12)),
+              ],
+            ),
+          ],
         ),
       ),
       drawer: Drawer(
@@ -187,21 +206,22 @@ class MyAppState extends State<Projeto01AppScreen> {
                 ),
               ),
             ),
-            ListTile(
-              leading: Icon(Icons.home),
-              title: Text('Tela Principal'),
-              onTap: () {
-                Navigator.pop(context); // Fecha o drawer
-              },
-            ),
+            // ListTile(
+            //   leading: Icon(Icons.home),
+            //   title: Text('Tela Principal'),
+            //   onTap: () {
+            //     Navigator.pop(context); // Fecha o drawer
+            //   },
+            // ),
             ListTile(
               leading: Icon(Icons.arrow_forward),
-              title: Text('Segunda Tela'),
+              title: Text('Tela Principal'),
               onTap: () {
                 Navigator.pop(context); // Fecha o drawer
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Segunda_Tela_App()),
+                  //MaterialPageRoute(builder: (context) => Segunda_Tela_App()),
+                  MaterialPageRoute(builder: (context) => TelaPrincipal()),
                 );
               },
             ),
@@ -257,7 +277,8 @@ class MyAppState extends State<Projeto01AppScreen> {
                 ),
                 onChanged: (value) {
                   setState(() {
-                    latitude = double.tryParse(value); // Convertendo String para double
+                    latitude = double.tryParse(
+                        value); // Convertendo String para double
                   });
                 },
               ),
@@ -274,7 +295,8 @@ class MyAppState extends State<Projeto01AppScreen> {
                 ),
                 onChanged: (value) {
                   setState(() {
-                    longitude = double.tryParse(value); // Convertendo String para double
+                    longitude = double.tryParse(
+                        value); // Convertendo String para double
                   });
                 },
               ),

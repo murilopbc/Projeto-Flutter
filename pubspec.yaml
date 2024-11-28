@@ -30,14 +30,18 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  sqflite: ^2.0.0+4
-  path: ^1.8.0
-  path_provider: ^2.0.0
-
+  #Linha abaixo é para usar o widget Gauce para exibição da umidade
+  syncfusion_flutter_gauges: ^20.3.47 
+  http: ^0.13.5  # Ou a versão mais recente
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
+  sqflite: ^2.0.0+4
+  path: ^1.8.0
+  path_provider: ^2.0.0 # Verifique sempre pela versão mais recente
+
+
 
 dev_dependencies:
   flutter_test:
@@ -49,6 +53,10 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^3.0.0
+  
+  
+
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -60,6 +68,9 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+   
+  assets:
+      - assets/senai_logo.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
